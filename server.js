@@ -12,6 +12,16 @@ server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
 
+let readyPlayerCount = 0;
+
 io.on("connection", (socket) => {
   console.log("User connected with", socket.id);
+
+  socket.on("ready", () => {
+    console.log("Pleyer ready", socket.id);
+    readyPlayerCount++;
+    if (readyPlayerCount === 2) {
+        // broadcasting
+    }
+  });
 });
