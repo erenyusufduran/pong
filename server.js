@@ -1,5 +1,11 @@
+const cors = require("cors");
 const server = require("http").createServer();
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 const PORT = 3000;
 server.listen(PORT, () => {
