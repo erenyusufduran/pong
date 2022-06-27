@@ -21,8 +21,12 @@ io.on("connection", (socket) => {
     console.log("Pleyer ready", socket.id);
     readyPlayerCount++;
     if (readyPlayerCount === 2) {
-        // broadcasting
-        io.emit('startGame', socket.id);
+      // broadcasting
+      io.emit("startGame", socket.id);
     }
+  });
+
+  socket.on("paddleMove", (paddleData) => {
+    socket.broadcast.emit("paddleMove", paddleData);
   });
 });
